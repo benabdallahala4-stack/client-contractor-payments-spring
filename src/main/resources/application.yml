@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: client-contractor-payments-spring
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://127.0.0.1:55435/client_contractor_payments}
+    username: ${DATABASE_USER:lab}
+    password: ${DATABASE_PASSWORD:lab}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:29092}
+    producer:
+      acks: all
+      retries: 10
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+payments:
+  outbox:
+    enabled: ${OUTBOX_ENABLED:true}
+    topic: ${PAYMENT_EVENT_TOPIC:job-paid.v1}
+    batch-size: ${OUTBOX_BATCH_SIZE:25}
+    poll-delay: ${OUTBOX_POLL_DELAY:1s}
+    lease: ${OUTBOX_LEASE:30s}
+    base-retry-delay: ${OUTBOX_BASE_RETRY_DELAY:5s}
+    maximum-retry-delay: ${OUTBOX_MAXIMUM_RETRY_DELAY:5m}
+    worker-count: ${OUTBOX_WORKER_COUNT:2}
+server:
+  address: ${HOST:127.0.0.1}
+  port: ${PORT:8080}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus

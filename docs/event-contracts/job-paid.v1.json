@@ -1,0 +1,12 @@
+{
+  "eventId": "20a93479-ae6a-45b3-9c95-5e929f39768a",
+  "eventType": "JobPaid",
+  "eventVersion": 1,
+  "occurredAt": "2026-09-23T10:15:30Z",
+  "jobId": "49184966-32ac-4039-b8cf-79f351d6923f",
+  "contractId": "0863b88e-55f7-4e0d-8cdf-eea8e521080d",
+  "paymentId": "bba31b4f-c096-4fa8-9d18-9a0a25e4204d",
+  "clientId": "a2b9d487-c534-49ae-9724-dce099c64057",
+  "contractorId": "3a99f384-07ca-45ee-aa2a-f455834bd598",
+  "amountCents": 30000
+}
